@@ -57,6 +57,7 @@ jobs:
       - name: "⭐ Install prerequisites"
         run: |
           sudo apt update && sudo apt upgrade -y
+          sudo apt list --installed
           sudo apt remove -y binutils
           sudo apt autoremove -y
           sudo apt update
