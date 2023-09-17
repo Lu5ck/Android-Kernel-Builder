@@ -140,16 +140,17 @@ jobs:
               esac
               rm $filename
 
+            fi
+
+            jq -r ".[$i].binPath[] | tostring" <<< "$toolchains" | while read -r bin_path; do
+              echo "$WORKSPACE/$toolchain_name/$bin_path" >> $GITHUB_PATH
+
               if [ $toolchain_name = "host" ]; then
                 for k in $WORKSPACE/$toolchain_name/$bin_path/x86_64-linux-*; do
                   echo $k
                   ln -sf "$k" "${i/x86_64-linux-}"
                 done
               fi
-            fi
-
-            jq -r ".[$i].binPath[] | tostring" <<< "$toolchains" | while read -r bin_path; do
-              echo "$WORKSPACE/$toolchain_name/$bin_path" >> $GITHUB_PATH
             done
           done
 
