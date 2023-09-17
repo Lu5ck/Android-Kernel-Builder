@@ -126,10 +126,10 @@ jobs:
                   unzip -d $toolchain_name "$filename"
                   ;;
                 *.tar)
-                  tar xvf "$filename" -C $toolchain_name
+                  tar xf "$filename" -C $toolchain_name
                   ;;
                 *.tar.gz)
-                  tar zxvf "$filename" -C $toolchain_name
+                  tar zxf "$filename" -C $toolchain_name
                   ;;
                 *.rar)
                   unrar x "$filename" $toolchain_name
