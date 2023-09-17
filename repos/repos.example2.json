@@ -30,7 +30,7 @@
                 "binPath": ["bin"]
             }
         ],
-        "ccache": true,
+        "ccache": false,
         "makeOptions": {
             "ARCH": "arm64",
             "SUBARCH": "arm64",
