@@ -141,7 +141,9 @@ jobs:
               rm $filename
 
               if [ $toolchain_name = "host" ]; then
-                for i in "/$WORKSPACE/$toolchain_name/bin/x86_64-linux-*"; do
+                echo "$WORKSPACE/$toolchain_name/bin/
+                for i in "$WORKSPACE/$toolchain_name/bin/x86_64-linux-*"; do
+                  echo $i
                   ln -sf "$i" "${i/x86_64-linux-}"
                 done
               fi
