@@ -56,10 +56,14 @@ jobs:
     steps:
       - name: "⭐ Install prerequisites"
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential bc gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev libfl-dev
-          sudo apt-get install -y curl git ftp lftp wget libarchive-tools ccache python2 python2-dev
-          sudo apt-get install -y zip unzip tar gzip bzip2 rar unrar
+          apt update && apt upgrade -y
+          apt install -y --no-install-recommends git make bc bison openssl \
+          curl zip kmod cpio flex libelf-dev libssl-dev libtfm-dev wget \
+          device-tree-compiler ca-certificates python3 python2 xz-utils \
+          ccache rar libgcc-10-dev
+
+          python_version="${PYTHON_VERSION:-3}"
+          ln -sf "/usr/bin/python${python_version}" /usr/bin/python
 
       - name: "🚄 Create cache key from `repos`"
         if: ${{ env.ccache == 'true' }}
