@@ -16,24 +16,24 @@
         "binPath": ["./aarch64-linux-android-4.9/bin", "llvm/bin"]
       }
     ],
-    "params": {
+    "makeOptions": {
       "ARCH": "arm64",
       "CC": "google/llvm/bin/clang",
-      "externalCommand": {
-        "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
-        "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-",
-        "LD": "google/llvm/bin/ld.lld",
-        "AR": "google/llvm/bin/llvm-ar",
-        "NM": "google/llvm/bin/llvm-nm",
-        "OBJCOPY": "google/llvm/bin/llvm-objcopy",
-        "OBJDUMP": "google/llvm/bin/llvm-objdump",
-        "READELF": "google/llvm/bin/llvm-readelf",
-        "OBJSIZE": "google/llvm/bin/llvm-size",
-        "STRIP": "google/llvm/bin/llvm-strip",
-        "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
-        "LLVM_AR": "google/llvm/bin/llvm-ar",
-        "LLVM_DIS": "google/llvm/bin/llvm-dis"
-      }
+      "LD": "google/llvm/bin/ld.lld",
+      "AR": "google/llvm/bin/llvm-ar",
+      "NM": "google/llvm/bin/llvm-nm",
+      "OBJCOPY": "google/llvm/bin/llvm-objcopy",
+      "OBJDUMP": "google/llvm/bin/llvm-objdump",
+      "READELF": "google/llvm/bin/llvm-readelf",
+      "OBJSIZE": "google/llvm/bin/llvm-size",
+      "STRIP": "google/llvm/bin/llvm-strip",
+      "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
+      "LLVM_AR": "google/llvm/bin/llvm-ar",
+      "LLVM_DIS": "google/llvm/bin/llvm-dis"
+    },
+    "makeExports": {
+      "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
+      "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-"
     },
     "AnyKernel3": {
       "use": false,
@@ -59,25 +59,24 @@
         "binPath": ["./aarch64-linux-android-4.9/bin", "llvm/bin"]
       }
     ],
-    "params": {
+    "makeOptions": {
       "ARCH": "arm64",
       "CC": "google/llvm/bin/clang",
-      "externalCommand": {
-        "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
-        "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-",
-
-        "LD": "google/llvm/bin/ld.lld",
-        "AR": "google/llvm/bin/llvm-ar",
-        "NM": "google/llvm/bin/llvm-nm",
-        "OBJCOPY": "google/llvm/bin/llvm-objcopy",
-        "OBJDUMP": "google/llvm/bin/llvm-objdump",
-        "READELF": "google/llvm/bin/llvm-readelf",
-        "OBJSIZE": "google/llvm/bin/llvm-size",
-        "STRIP": "google/llvm/bin/llvm-strip",
-        "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
-        "LLVM_AR": "google/llvm/bin/llvm-ar",
-        "LLVM_DIS": "google/llvm/bin/llvm-dis"
-      }
+      "LD": "google/llvm/bin/ld.lld",
+      "AR": "google/llvm/bin/llvm-ar",
+      "NM": "google/llvm/bin/llvm-nm",
+      "OBJCOPY": "google/llvm/bin/llvm-objcopy",
+      "OBJDUMP": "google/llvm/bin/llvm-objdump",
+      "READELF": "google/llvm/bin/llvm-readelf",
+      "OBJSIZE": "google/llvm/bin/llvm-size",
+      "STRIP": "google/llvm/bin/llvm-strip",
+      "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
+      "LLVM_AR": "google/llvm/bin/llvm-ar",
+      "LLVM_DIS": "google/llvm/bin/llvm-dis"
+    },
+    "makeExports": {
+      "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
+      "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-"
     },
     "AnyKernel3": {
       "use": false,
@@ -106,24 +105,24 @@
         ]
       }
     ],
-    "params": {
+    "makeOptions": {
       "ARCH": "arm64",
       "CC": "google/llvm/bin/clang",
-      "externalCommand": {
-        "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
-        "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-",
-        "LD": "google/llvm/bin/ld.lld",
-        "AR": "google/llvm/bin/llvm-ar",
-        "NM": "google/llvm/bin/llvm-nm",
-        "OBJCOPY": "google/llvm/bin/llvm-objcopy",
-        "OBJDUMP": "google/llvm/bin/llvm-objdump",
-        "READELF": "google/llvm/bin/llvm-readelf",
-        "OBJSIZE": "google/llvm/bin/llvm-size",
-        "STRIP": "google/llvm/bin/llvm-strip",
-        "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
-        "LLVM_AR": "google/llvm/bin/llvm-ar",
-        "LLVM_DIS": "google/llvm/bin/llvm-dis"
-      }
+      "LD": "google/llvm/bin/ld.lld",
+      "AR": "google/llvm/bin/llvm-ar",
+      "NM": "google/llvm/bin/llvm-nm",
+      "OBJCOPY": "google/llvm/bin/llvm-objcopy",
+      "OBJDUMP": "google/llvm/bin/llvm-objdump",
+      "READELF": "google/llvm/bin/llvm-readelf",
+      "OBJSIZE": "google/llvm/bin/llvm-size",
+      "STRIP": "google/llvm/bin/llvm-strip",
+      "LDGOLD": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld.gold",
+      "LLVM_AR": "google/llvm/bin/llvm-ar",
+      "LLVM_DIS": "google/llvm/bin/llvm-dis"
+    },
+    "makeExports": {
+      "CROSS_COMPILE": "google/aarch64-linux-android-4.9/bin/aarch64-linux-android-",
+      "CLANG_TRIPLE": "google/llvm/bin/aarch64-linux-android-"
     },
     "AnyKernel3": {
       "use": false,

@@ -145,45 +145,39 @@ jobs:
       - name: "😎 Set args"
         id: generate-args
         env:
-          params: "${{ toJSON(matrix.repos.params) }}"
+          makeOptions: "${{ toJSON(matrix.repos.makeOptions) }}"
+          makeExports: "${{ toJSON(matrix.repos.makeExports) }}"
           THREAD: $(nproc --all)
         run: |
           echo "🤔 PATH Variable: $PATH"
 
-          ARCH=$(echo $params | jq -r ".ARCH")
-          CC=$(echo $params | jq -r ".CC")
+          echo  "Setting up the make options"
+          makeArgs="-j${{ env.THREAD }}"
 
-          args="-j${{ env.THREAD }}"
+          while IFS='|' read key value; do
+            if [ $key = "ARCH" ]; then
+              echo "ARCH=$value" >> $GITHUB_OUTPUT
+            fi
+
+            if [ $key = "CC" ]; then
+              if [ ${{ env.ccache }} = true ]; then
+                value="\"ccache $value\""
+              fi
+            fi
+
+            makeArgs="$makeArgs $key=$value"
+          done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeOptions")
+
           if [ -n "${{ env.OUT_DIR }}" ]; then
-            mkdir -p ${{ env.OUT_DIR }} && args="$args O=${{ env.OUT_DIR }}"
+            mkdir -p ${{ env.OUT_DIR }} && makeArgs="$makeArgs O=${{ env.OUT_DIR }}"
           fi
-          if [ -n "$ARCH" ]; then
-            args="$args ARCH=$ARCH"
-          fi
-          if [ -n "$CC" ]; then
 
-            if [[ "$CC" == *"/"* ]]; then
-              CC=${{ env.WORKSPACE }}/$CC
-            fi
+          echo "makeArgs=$makeArgs" >> $GITHUB_OUTPUT
 
-            if [ ${{ env.ccache }} = true ]; then
-              args="$args CC=\"ccache $CC\""
-            else
-              args="$args CC=$CC"
-            fi
-          fi
-          while read -r externalCommand; do
-            key=$(echo "$externalCommand" | cut -d= -f1)
-            value=$(echo "$externalCommand" | cut -d= -f2)
-            if [[ "$value" == *"/"* ]]; then
-              value="${{ env.WORKSPACE }}/$value"
-            fi
-            args="$args $key=$value"
-          done < <(jq -r '.externalCommand | to_entries[] | "\(.key)=\(.value)"' <<< "$params")
-        
-          echo "🤔 $args"
-          echo "ARCH=$ARCH" >> $GITHUB_OUTPUT
-          echo "args=$args" >> $GITHUB_OUTPUT
+          echo  "Setting up the make exports"
+          while IFS='|' read key value; do
+            echo "${key}=${value}" >> "$GITHUB_ENV"
+          done < <(jq -r 'to_entries | map(.key + "|" + (.value | tostring)) | .[]' <<< "$makeExports")
 
       - name: "😋 Update KernelSU"
         working-directory: ${{ env.KERNEL_NAME }}
@@ -209,19 +203,21 @@ jobs:
       - name: "👍 Make defconfig"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
-          args: ${{ steps.generate-args.outputs.args }}
+          makeArgs: ${{ steps.generate-args.outputs.makeArgs }}
           arch: ${{ steps.generate-args.outputs.ARCH }}
         run: |
           echo "PATH Variable: $PATH"
-          make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
+          echo "Make Options: $makeArgs"
+          make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
 
       - name: "🎶 Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
-          args: ${{ steps.generate-args.outputs.args }}
+          makeArgs: ${{ steps.generate-args.outputs.makeArgs }}
         run: |
           echo "PATH Variable: $PATH"
-          make ${{ env.args }}
+          echo "Make Options: $makeArgs"
+          make ${{ env.makeArgs }}
 
       - name: "💛 Upload Image"
         uses: actions/upload-artifact@v3
