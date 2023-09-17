@@ -142,6 +142,7 @@ jobs:
 
               if [ $toolchain_name = "host" ]; then
                 for k in $WORKSPACE/$toolchain_name/$bin_path/x86_64-linux-*; do
+                  echo $k
                   ln -sf "$k" "${i/x86_64-linux-}"
                 done
               fi
