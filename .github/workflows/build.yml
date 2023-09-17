@@ -139,7 +139,6 @@ jobs:
                   ;;
               esac
               rm $filename
-
             fi
 
             jq -r ".[$i].binPath[] | tostring" <<< "$toolchains" | while read -r bin_path; do
@@ -229,6 +228,7 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options: $makeArgs"
+          make ${{ env.makeArgs }} prepare
           make ${{ env.makeArgs }}
 
       - name: "💛 Upload Image"
