@@ -224,6 +224,7 @@ jobs:
           echo "PATH Variable: $PATH"
           echo "Make Options: $makeArgs"
           make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
+          sudo apt list --installed
 
       - name: "🎶 Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
