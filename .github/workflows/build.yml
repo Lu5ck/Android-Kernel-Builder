@@ -69,7 +69,7 @@ jobs:
 
           python_version="${PYTHON_VERSION:-3}"
           sudo ln -sf "/usr/bin/python${python_version}" /usr/bin/python
-          find / -name gcc*
+          sudo find / -name gcc*
 
       - name: "🚄 Create cache key from `repos`"
         if: ${{ env.ccache == 'true' }}
