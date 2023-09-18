@@ -67,7 +67,7 @@ jobs:
           ccache rar libgcc-10-dev
           sudo apt update && sudo apt upgrade -y
 
-          ls /usr/bin/gcc*
+          ls /usr/bin/
 
           python_version="${PYTHON_VERSION:-3}"
           sudo ln -sf "/usr/bin/python${python_version}" /usr/bin/python
