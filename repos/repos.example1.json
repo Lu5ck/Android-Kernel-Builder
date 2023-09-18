@@ -18,7 +18,7 @@
     ],
     "ccache": false,
     "makeOptions": {
-      "ARCH": "proton-clang/bin/arm64",
+      "ARCH": "arm64",
       "CC": "proton-clang/bin/clang",
       "LD": "proton-clang/bin/ld.lld",
       "AR": "proton-clang/bin/llvm-ar",
