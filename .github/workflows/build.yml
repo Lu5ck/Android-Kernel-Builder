@@ -57,7 +57,7 @@ jobs:
       - name: "⭐ Install prerequisites"
         run: |
           sudo apt purge binutils dotnet* aspnetcore*
-          sudo apt clang* gcc* lld* llvm* mysql* php*
+          sudo apt purge clang* gcc* lld* llvm* mysql* php*
           sudo apt autoremove -y
           sudo apt update && sudo apt upgrade -y
           sudo apt list --installed
