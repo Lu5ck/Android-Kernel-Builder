@@ -57,8 +57,8 @@ jobs:
       - name: "⭐ Install prerequisites"
         run: |
           sudo apt remove --purge binutils dotnet* aspnetcore* clang* gcc* lld* llvm* mysql* php*
-          sudo apt update && sudo apt upgrade -y
           sudo apt autoremove -y
+          sudo apt update && sudo apt upgrade -y
           sudo apt list --installed
           sudo apt update
           sudo apt install -y --no-install-recommends git make bc bison openssl \
