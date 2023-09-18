@@ -69,7 +69,6 @@ jobs:
 
           python_version="${PYTHON_VERSION:-3}"
           sudo ln -sf "/usr/bin/python${python_version}" /usr/bin/python
-          sudo find / -name gcc*
 
       - name: "🚄 Create cache key from `repos`"
         if: ${{ env.ccache == 'true' }}
@@ -225,6 +224,8 @@ jobs:
         run: |
           echo "PATH Variable: $PATH"
           echo "Make Options: $makeArgs"
+          gcc --version
+          clang --version
           make ${{ env.makeArgs }} ${{ env.DEFCONFIG_NAME }}
           sudo apt list --installed
 
